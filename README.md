@@ -23,6 +23,7 @@ Project is created with:
 * Python 3.9
 * Flask
 * Package to manage GPIO `RPi.GPIO`
+* Tree.js
 
 ## Setup
 To run this project, run:
