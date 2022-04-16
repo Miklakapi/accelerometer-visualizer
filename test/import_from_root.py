@@ -4,5 +4,6 @@
 
 import sys
 
-sys.path.insert(1, sys.path[0][0:-10])
-sys.path.insert(1, sys.path[0][0:-10] + 'src')
+sys.path.insert(1, sys.path[0][0:-4])
+sys.path.insert(1, sys.path[0][0:-4] + 'src')
+print(sys.path)
