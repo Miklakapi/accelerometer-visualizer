@@ -1,78 +1,72 @@
 #!/usr/bin/env python
 
-"""This module reads all the necessary files."""
+"""This module stores path to files and reads them."""
 
 import json
-from datetime import datetime
 import os
+from typing import TypeVar
+
+FileReaderObject = TypeVar('FileReaderObject', bound='FileReader')
 
 
 class FileReader:
     """
-    This class reads all the necessary files for the program to run.
+    This class holds the path to all the given files and their aliases, and reads those files.
     """
 
-    __file_directory: str = None
-    """Stores directory to all files."""
+    __files: dict = {}
+    """Stores path to all files."""
 
-    def __init__(self, file_directory: str = '../data/') -> None:
+    def __init__(self, associative_name: str = 'pins', path_to_file: str = '../data/pins.json') -> None:
         """
-        This constructor check that the folder exists and stores it to variable.
-        :param file_directory: str | Path to the file.
-        :return: None
-        """
-        if not os.path.isdir(file_directory):
-            e = Exception('"' + file_directory + '" folder not found.')
-            self.append_error(str(e))
-            raise e
-        self.__file_directory = file_directory
+        This constructor writes path to one given file.
 
-    def read_pins(self) -> dict:
+        :param associative_name: str | Key to FileReader dictionary
+        :param path_to_file: str | Value to FileReader dictionary
         """
-        Reads all data from the json pins file.
-        :return: dict | All data from the file.
-        """
-        try:
-            file = open(self.__file_directory + 'pins.json', 'r')
-            data = json.load(file)
-            file.close()
-            return data
-        except FileNotFoundError as e:
-            self.append_error(str(e))
-            raise e
+        self.add_file(associative_name, path_to_file)
 
-    def read_sequences(self) -> dict:
+    def add_file(self, associative_name: str, path_to_file: str) -> FileReaderObject:
         """
-        Reads all data from the json sequences file.
-        :return: dict | All data from the file.
-        """
-        try:
-            file = open(self.__file_directory + 'sequences.json', 'r')
-            data = json.load(file)
-            file.close()
-            return data
-        except FileNotFoundError as e:
-            self.append_error(str(e))
-            raise e
+        Writes a key and value to a FileReader dictionary and checks if the file exists.
 
-    @staticmethod
-    def append_error(error_data: str, current_folder: bool = False, file_directory: str = '../data/',) -> None:
+        :param associative_name: str | Key to FileReader dictionary
+        :param path_to_file: str | Value to FileReader dictionary
+        :return: self
         """
-        Writes errors to the file.
-        :param error_data: str | Data to display int the file.
-        :param current_folder: bool | Search file in current folder.
-        :param file_directory: str | Path to the error file.
-        :return: None
+        if not os.path.isfile(path_to_file):
+            raise Exception('File "' + path_to_file + '" not found.')
+        self.__files[associative_name] = path_to_file
+        return self
+
+    def del_file(self, associative_name: str) -> FileReaderObject:
         """
-        if not current_folder:
-            if not os.path.isdir(file_directory):
-                current_folder = True
-        now = datetime.now().strftime('%d/%m/%Y %H:%M:%S')
-        if current_folder:
-            file = open("error.log", "a")
-            file.write(now + ': ' + error_data + '\n')
-            file.close()
-        else:
-            file = open(file_directory + 'error.log', 'a')
-            file.write(now + ': ' + error_data + '\n')
-            file.close()
+        Removes the file path from the FileReader dictionary.
+
+        :param associative_name: str | Key to FileReader dictionary
+        :return: self
+        """
+        del self.__files[associative_name]
+        return self
+
+    def show_files(self) -> FileReaderObject:
+        """
+        Shows all keys and values that are stores.
+
+        :return: self
+        """
+        for key, value in self.__files.items():
+            print(key + ' : ' + value)
+        return self
+
+    def get_data(self, associative_name: str) -> dict:
+        """
+        Retrieves all data from a file.
+
+        :param associative_name: str | Key to FileReader dictionary
+        :return: dict | All data from file
+        """
+        file = open(self.__files[associative_name], 'r')
+        data = json.load(file)
+        file.close()
+        return data
