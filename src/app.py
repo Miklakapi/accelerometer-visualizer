@@ -5,6 +5,7 @@ import multiprocessing
 
 from flask import Flask
 from multiprocessing import Process
+from flask_cors import CORS, cross_origin
 
 from accelerometer_reader import Accelerometer
 from loop_rate import LoopRate
@@ -13,12 +14,13 @@ data = multiprocessing.Manager().list()
 data.append(0)
 data.append(0)
 app = Flask(__name__)
+CORS(app)
 
 
 def accelerometer(variable):
     try:
         acc = Accelerometer()
-        loop = LoopRate(4)
+        loop = LoopRate(25)
         while True:
             val = acc.run()
             variable[0] = val[0]
