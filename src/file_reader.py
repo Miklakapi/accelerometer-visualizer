@@ -14,7 +14,7 @@ class FileReader:
     This class holds the path to all the given files and their aliases, and reads those files.
     """
 
-    __files: dict = {}
+    __files: dict = None
     """Stores path to all files."""
 
     def __init__(self, associative_name: str = 'pins', path_to_file: str = '../data/pins.json') -> None:
@@ -24,6 +24,7 @@ class FileReader:
         :param associative_name: str | Key to FileReader dictionary
         :param path_to_file: str | Value to FileReader dictionary
         """
+        self.__files = {}
         self.add_file(associative_name, path_to_file)
 
     def add_file(self, associative_name: str, path_to_file: str) -> FileReaderObject:
@@ -48,6 +49,14 @@ class FileReader:
         """
         del self.__files[associative_name]
         return self
+
+    def get_files_dictionary(self) -> dict:
+        """
+        Returns a dictionary of files.
+
+        :return: dict | File dictionary
+        """
+        return self.__files.copy()
 
     def show_files(self) -> FileReaderObject:
         """
