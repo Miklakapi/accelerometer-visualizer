@@ -15,7 +15,6 @@ class Unit(Enum):
     MIN = 1/60
     SEC = 1
     MS = 1000
-    MICS = 1000000
 
 
 class TimeConverter:
@@ -71,11 +70,3 @@ class TimeConverter:
         :return: int | Number of milliseconds
         """
         return int(self.__seconds * 1000)
-
-    def as_microseconds(self) -> int:
-        """
-        This method returns time in microseconds.
-
-        :return: int | Number of microseconds
-        """
-        return int(self.__seconds * 1000000)
