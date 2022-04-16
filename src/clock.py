@@ -43,4 +43,6 @@ class Clock:
 
         :return: TimeConverter | Elapsed time
         """
-        return TimeConverter(time() - self.__time_start_point)
+        elapsed = TimeConverter(time() - self.__time_start_point)
+        self.__time_start_point = time()
+        return elapsed
