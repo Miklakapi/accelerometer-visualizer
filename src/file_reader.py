@@ -15,7 +15,7 @@ class FileReader:
     """
 
     __files: dict = None
-    """Stores path to all files."""
+    """Stores path to all files and aliases to their."""
 
     def __init__(self, associative_name: str = 'pins', path_to_file: str = '../data/pins.json') -> None:
         """
