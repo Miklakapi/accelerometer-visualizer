@@ -1,5 +1,6 @@
 from unittest import TestCase
 
+import import_from_root
 from src.file_reader import FileReader
 
 
