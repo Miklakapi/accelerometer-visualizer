@@ -5,7 +5,6 @@
 from time import sleep
 
 from clock import Clock
-from file_reader import FileReader
 
 
 class LoopRate:
@@ -25,32 +24,29 @@ class LoopRate:
     def __init__(self, frequency: int) -> None:
         """
         This constructor sets the maximum loop frequency and loop period.
+
         :param frequency: int | Loop frequency
         :return: None
         """
-        if frequency <= 0:
-
-            raise ValueError("The frequency must be greater than 0.")
-
         self.__clock = Clock()
         self.set_frequency(frequency)
 
     def set_frequency(self, frequency: int) -> None:
         """
         This method sets the maximum loop frequency and loop period.
+
         :param frequency: int | Loop frequency
         :return: None
         """
         if frequency <= 0:
-            FileReader.append_error("The frequency in LoopRate class must be greater than 0.")
             raise ValueError("The frequency must be greater than 0.")
-
         self.__frequency = frequency
         self.__period = float(1/frequency)
 
     def slow_loop(self) -> None:
         """
         This method puts the loop to sleep if it is too fast.
+
         :return: None
         """
         if self.__clock.get_elapsed_time().as_seconds() < self.__period:
