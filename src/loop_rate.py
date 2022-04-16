@@ -33,7 +33,7 @@ class LoopRate:
 
     def set_frequency(self, frequency: int) -> None:
         """
-        This method sets the maximum loop frequency and loop period.
+        This method sets the maximum loop frequency.
 
         :param frequency: int | Loop frequency
         :return: None
