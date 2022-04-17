@@ -3,7 +3,9 @@
 """This module manages the web server."""
 import multiprocessing
 
-from flask import Flask
+import os
+import logging
+from flask import Flask, send_from_directory, render_template
 from multiprocessing import Process
 from flask_cors import CORS, cross_origin
 
@@ -30,6 +32,16 @@ def accelerometer(variable):
         return
 
 
+@app.route('/favicon.ico')
+def favicon():
+    return send_from_directory(os.path.join(app.root_path, 'static'), 'favicon.ico', mimetype='image/vnd.microsoft.icon')
+
+
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+
 @app.route('/get-data/')
 def get_data():
     return {'data': [data[0], data[1]]}
@@ -37,6 +49,7 @@ def get_data():
 
 if __name__ == '__main__':
     p = Process(target=accelerometer, args=(data,))
+    logging.getLogger('werkzeug').disabled = True
     try:
         p.start()
         app.run('192.168.1.184', debug=True)

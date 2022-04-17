@@ -5,7 +5,7 @@ const scene = new THREE.Scene();
 
 // Add a cube to the scene
 const geometry = new THREE.BoxGeometry(5, 0.5, 3); // width, height, depth
-const material = new THREE.MeshLambertMaterial({ color: 0x00ff00 });
+const material = new THREE.MeshLambertMaterial({ color: 0x0000ff });
 const mesh = new THREE.Mesh(geometry, material);
 mesh.position.set(0, 0, 0);
 mesh.rotation.set(radToDeg(0), 0, 0);
