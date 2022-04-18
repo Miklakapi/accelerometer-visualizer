@@ -11,6 +11,7 @@ from flask_cors import CORS, cross_origin
 
 from accelerometer_reader import Accelerometer
 from loop_rate import LoopRate
+from measurements_fix import MeasurementsFixer
 
 data = multiprocessing.Manager().list()
 data.append(0)
@@ -22,12 +23,15 @@ CORS(app)
 def accelerometer(variable):
     try:
         acc = Accelerometer()
-        loop = LoopRate(25)
+        loop = LoopRate(30)
+        fixer = MeasurementsFixer()
         while True:
-            val = acc.run()
+            for i in range(3):
+                fixer.add_measurement(acc.run())
+                loop.slow_loop()
+            val = fixer.get_fixed_measurement()
             variable[0] = val[0]
             variable[1] = val[1]
-            loop.slow_loop()
     except KeyboardInterrupt:
         return
 
