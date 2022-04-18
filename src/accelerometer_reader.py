@@ -79,7 +79,7 @@ class Accelerometer:
         :param z: float | Z axis parameters
         :return: float | Y axis angle
         """
-        return -math.degrees(math.atan2(x, Accelerometer.__dist(y, z)))
+        return math.degrees(math.atan2(x, Accelerometer.__dist(y, z)))
 
     def run(self) -> list:
         """
