@@ -48,10 +48,10 @@ $(document).ready(() => {
 
 function reload() {
     let data = getData();
-    update(data["data"][0], 0, -data["data"][1]);
+    update(data["data"][0], 0, data["data"][1]);
     setTimeout(function() {
         reload();
-    }, 50);
+    }, 66); //15 Hz
 }
 
 function getData() {
