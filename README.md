@@ -4,8 +4,7 @@
 ![linux](https://img.shields.io/badge/os-Linux-green)
 ![language](https://img.shields.io/badge/language-Python3.9-blue)
 ![version](https://img.shields.io/badge/version-1.0.0-success)
-![status](https://img.shields.io/badge/status-develop-yellow)
-
+![status](https://img.shields.io/badge/status-test-red)
 
 ## Table of Contents
 * [General info](#general-info)
@@ -15,7 +14,6 @@
 * [Status](#status)
 
 ## General info
-
 
 ## Technologies
 Project is created with:
@@ -31,6 +29,8 @@ To run this project, run:
 
 ## Features
 
-
 ## Status
-The project is in the development phase.
+The project is in the test phase.
+
+## TODO
+- README.md
