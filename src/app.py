@@ -1,11 +1,11 @@
 #!/usr/bin/env python
 
 """This module manages the web server."""
-import multiprocessing
 
 import os
 import logging
 from flask import Flask, send_from_directory, render_template
+import multiprocessing
 from multiprocessing import Process
 from flask_cors import CORS, cross_origin
 
