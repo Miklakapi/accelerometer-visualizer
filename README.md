@@ -19,6 +19,10 @@ A program that uses an accelerometer and a Raspberry Pi to visualize the movemen
 A Python program that manages the MPU-6050 accelerometer and its data. Via the web application on flask, it sends data to the website
 and converts them into a living 3D model that shows the movements of the device.
 
+<p align="center" width="100%">
+    <img width="33%" src="https://github.com/Miklakapi/accelerometer-visualizer/blob/master/accelerometer.gif"> 
+</p>
+
 ## Technologies
 Project is created with:
 
