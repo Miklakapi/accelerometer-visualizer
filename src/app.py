@@ -56,7 +56,7 @@ if __name__ == '__main__':
     logging.getLogger('werkzeug').disabled = True
     try:
         p.start()
-        app.run('192.168.1.184', debug=True)
+        app.run('192.168.1.185', debug=False)
     except KeyboardInterrupt:
         p.terminate()
         p.join()

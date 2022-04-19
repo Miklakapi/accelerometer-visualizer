@@ -59,7 +59,7 @@ function getData() {
     $.ajax({
         async: false,
         type: 'GET',
-        url: 'http://192.168.1.184:5000/get-data/',
+        url: 'http://192.168.1.185:5000/get-data/',
         success: function(data) {
             result = data
         }
